@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BookingSystemApi.Application\BookingSystemApi.Application.csproj" />
+      <ProjectReference Include="..\BookingSystemApi.Core\BookingSystemApi.Core.csproj" />
+      <ProjectReference Include="..\BookingSystemApi.Infrastructure\BookingSystemApi.Infrastructure.csproj" />
+      <ProjectReference Include="..\BookingSystemApi.Persistence\BookingSystemApi.Persistence.csproj" />
+    </ItemGroup>
+
+</Project>

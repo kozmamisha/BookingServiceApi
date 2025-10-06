@@ -1,0 +1,7 @@
+﻿services:
+  bookingsystemapi:
+    image: bookingsystemapi
+    build:
+      context: .
+      dockerfile: BookingSystemApi/Dockerfile
+

@@ -1,0 +1,11 @@
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\bin\Debug\net9.0\BookingSystemApi.Infrastructure.deps.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\bin\Debug\net9.0\BookingSystemApi.Infrastructure.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\bin\Debug\net9.0\BookingSystemApi.Infrastructure.pdb
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.AssemblyInfo.cs
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\refint\BookingSystemApi.Infrastructure.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.pdb
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\ref\BookingSystemApi.Infrastructure.dll

@@ -1,0 +1,17 @@
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Persistence.deps.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Persistence.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Persistence.pdb
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Core.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Core.pdb
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.csproj.AssemblyReference.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.AssemblyInfoInputs.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.AssemblyInfo.cs
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingS.912A77C6.Up2Date
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\refint\BookingSystemApi.Persistence.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.pdb
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\ref\BookingSystemApi.Persistence.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Persistence.runtimeconfig.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.genruntimeconfig.cache
