@@ -9,3 +9,5 @@ C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\ob
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\refint\BookingSystemApi.Infrastructure.dll
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.pdb
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\ref\BookingSystemApi.Infrastructure.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Infrastructure\obj\Debug\net9.0\BookingSystemApi.Infrastructure.sourcelink.json

@@ -15,3 +15,4 @@ C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\D
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\ref\BookingSystemApi.Persistence.dll
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\bin\Debug\net9.0\BookingSystemApi.Persistence.runtimeconfig.json
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.genruntimeconfig.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Persistence\obj\Debug\net9.0\BookingSystemApi.Persistence.sourcelink.json
