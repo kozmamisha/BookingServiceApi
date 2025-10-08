@@ -1,21 +1,30 @@
-﻿using BookingSystemApi.Application.Exceptions;
+﻿using AutoMapper;
+using BookingSystemApi.Application.Dto;
+using BookingSystemApi.Application.Exceptions;
 using BookingSystemApi.Application.Interfaces;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Persistence.Interfaces;
 
 namespace BookingSystemApi.Application.Services;
 
-public class RoomService(IRoomRepository roomRepository, IHotelRepository hotelRepository) : IRoomService
+public class RoomService(
+    IRoomRepository roomRepository, 
+    IHotelRepository hotelRepository, 
+    IMapper mapper) : IRoomService
 {
-    public async Task<List<RoomEntity>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<RoomDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await roomRepository.GetAllRooms(cancellationToken);
+        var rooms = await roomRepository.GetAllRooms(cancellationToken);
+        var result = mapper.Map<List<RoomDto>>(rooms);
+        return result;
     }
 
-    public async Task<RoomEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<RoomDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await roomRepository.GetRoomById(id, cancellationToken)
-               ?? throw new EntityNotFoundException("Room not found");
+        var room = await roomRepository.GetRoomById(id, cancellationToken)
+                    ?? throw new EntityNotFoundException("Room not found");
+        var result = mapper.Map<RoomDto>(room);
+        return result;
     }
 
     public async Task CreateAsync(decimal pricePerNight, int capacity, Guid hotelId, CancellationToken cancellationToken)
@@ -58,22 +67,26 @@ public class RoomService(IRoomRepository roomRepository, IHotelRepository hotelR
         await roomRepository.DeleteRoom(room, cancellationToken);
     }
 
-    public async Task<List<RoomEntity>> GetByAddressAsync(string address, CancellationToken cancellationToken)
+    public async Task<List<RoomDto>> GetByAddressAsync(string address, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(address))
             throw new ArgumentException("Incorrect address.");
         
-        return await roomRepository.GetByAddress(address, cancellationToken);
+        var rooms = await roomRepository.GetByAddress(address, cancellationToken);
+        var result = mapper.Map<List<RoomDto>>(rooms);
+        return result;
     }
 
-    public async Task<List<RoomEntity>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
+    public async Task<List<RoomDto>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
     {
         if (startDate == default || endDate == default)
             throw new ArgumentException("Start or end date cannot be empty.");
 
         if (startDate >= endDate)
             throw new ArgumentException("Start date must be earlier than end date.");
-
-        return await roomRepository.GetByAvailableDates(startDate, endDate, cancellationToken);
+        
+        var rooms = await roomRepository.GetByAvailableDates(startDate, endDate, cancellationToken);
+        var result = mapper.Map<List<RoomDto>>(rooms);
+        return result;
     }
 }

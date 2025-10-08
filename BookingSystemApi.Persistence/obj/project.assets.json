@@ -790,6 +790,22 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.8.10": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Scalar.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "System.Buffers/4.6.0": {
         "type": "package",
         "compile": {
@@ -1050,7 +1066,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Http": "2.3.0"
+          "Microsoft.AspNetCore.Http": "2.3.0",
+          "Scalar.AspNetCore": "2.8.10"
         },
         "compile": {
           "bin/placeholder/BookingSystemApi.Core.dll": {}
@@ -2654,6 +2671,25 @@
         "pomelo.entityframeworkcore.mysql.nuspec"
       ]
     },
+    "Scalar.AspNetCore/2.8.10": {
+      "sha512": "/7dX5P9C+mVrc2xS/b7YB89w+kZPp/jn/m8T3Iv5163Vu3awZPHmkwJ1/VRGn5in66+gkGMWcL7j9NbLnTrcrA==",
+      "type": "package",
+      "path": "scalar.aspnetcore/2.8.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net10.0/Scalar.AspNetCore.dll",
+        "lib/net10.0/Scalar.AspNetCore.xml",
+        "lib/net8.0/Scalar.AspNetCore.dll",
+        "lib/net8.0/Scalar.AspNetCore.xml",
+        "lib/net9.0/Scalar.AspNetCore.dll",
+        "lib/net9.0/Scalar.AspNetCore.xml",
+        "scalar.aspnetcore.2.8.10.nupkg.sha512",
+        "scalar.aspnetcore.nuspec"
+      ]
+    },
     "System.Buffers/4.6.0": {
       "sha512": "lN6tZi7Q46zFzAbRYXTIvfXcyvQQgxnY7Xm6C6xQ9784dEL1amjM6S6Iw4ZpsvesAKnRVsM4scrDQaDqSClkjA==",
       "type": "package",
@@ -3109,7 +3145,8 @@
       "Microsoft.AspNetCore.Http >= 2.3.0",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.0-rc.1.25451.107",
-      "Pomelo.EntityFrameworkCore.MySql >= 9.0.0"
+      "Pomelo.EntityFrameworkCore.MySql >= 9.0.0",
+      "Scalar.AspNetCore >= 2.8.10"
     ]
   },
   "packageFolders": {
@@ -3185,6 +3222,10 @@
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
             "version": "[9.0.0, )"
+          },
+          "Scalar.AspNetCore": {
+            "target": "Package",
+            "version": "[2.8.10, )"
           }
         },
         "imports": [

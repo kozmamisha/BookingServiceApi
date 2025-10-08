@@ -1,21 +1,27 @@
-﻿using BookingSystemApi.Application.Exceptions;
+﻿using AutoMapper;
+using BookingSystemApi.Application.Dto;
+using BookingSystemApi.Application.Exceptions;
 using BookingSystemApi.Application.Interfaces;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Persistence.Interfaces;
 
 namespace BookingSystemApi.Application.Services;
 
-public class HotelService(IHotelRepository hotelRepository) : IHotelService
+public class HotelService(IHotelRepository hotelRepository, IMapper mapper) : IHotelService
 {
-    public async Task<List<HotelEntity>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<HotelDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await hotelRepository.GetAllHotels(cancellationToken);
+        var hotels = await hotelRepository.GetAllHotels(cancellationToken);
+        var result = mapper.Map<List<HotelDto>>(hotels);
+        return result;
     }
 
-    public async Task<HotelEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<HotelDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await hotelRepository.GetHotelById(id, cancellationToken)
+        var hotel = await hotelRepository.GetHotelById(id, cancellationToken)
             ?? throw new EntityNotFoundException("Hotel not found");
+        var result = mapper.Map<HotelDto>(hotel);
+        return result;
     }
 
     public async Task CreateAsync(string name, string address, string description, CancellationToken cancellationToken)

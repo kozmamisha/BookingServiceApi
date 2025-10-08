@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SPWxj1PJQYQ=",
+  "dgSpecHash": "ch6Z4h0dvDs=",
   "success": true,
   "projectFilePath": "C:\\Users\\micha\\RiderProjects\\BookingSystemApi\\BookingSystemApi.Persistence\\BookingSystemApi.Persistence.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\micha\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\mysqlconnector\\2.4.0\\mysqlconnector.2.4.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\9.0.0\\pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512",
+    "C:\\Users\\micha\\.nuget\\packages\\scalar.aspnetcore\\2.8.10\\scalar.aspnetcore.2.8.10.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\system.buffers\\4.6.0\\system.buffers.4.6.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

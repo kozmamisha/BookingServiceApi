@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookingSystemApi.Persistence.Interfaces;
+using BookingSystemApi.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +15,11 @@ public static class PersistenceExtensions
             options.UseMySql(configuration.GetConnectionString("BookingSystemDbContext"),
                 ServerVersion.AutoDetect(configuration.GetConnectionString("BookingSystemDbContext")));
         });
+        
+        services.AddScoped<IBookingRepository, BookingRepository>();
+        services.AddScoped<IHotelRepository, HotelRepository>();
+        services.AddScoped<IRoomRepository, RoomRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         
         return services;
     }
