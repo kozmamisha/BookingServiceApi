@@ -40,12 +40,12 @@ public class RoomRepository(BookingSystemDbContext dbContext) : IRoomRepository
         await dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<RoomEntity>> GetByCity(string city, CancellationToken cancellationToken)
+    public async Task<List<RoomEntity>> GetByAddress(string address, CancellationToken cancellationToken)
     {
         return await dbContext.Rooms
             .AsNoTracking()
             .Include(r => r.Hotel)
-            .Where(r => r.Hotel != null && r.Hotel.Address.Contains(city))
+            .Where(r => r.Hotel != null && r.Hotel.Address.Contains(address))
             .ToListAsync(cancellationToken);
     }
 

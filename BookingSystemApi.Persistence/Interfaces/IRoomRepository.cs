@@ -10,6 +10,6 @@ public interface IRoomRepository
     Task UpdateRoom(RoomEntity room, CancellationToken cancellationToken);
     Task DeleteRoom(RoomEntity room, CancellationToken cancellationToken);
     
-    Task<List<RoomEntity>> GetByCity(string city, CancellationToken cancellationToken);
+    Task<List<RoomEntity>> GetByAddress(string address, CancellationToken cancellationToken);
     Task<List<RoomEntity>> GetByAvailableDates(DateTime startDate, DateTime endDate, CancellationToken cancellationToken);
 }

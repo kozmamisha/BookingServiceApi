@@ -58,13 +58,22 @@ public class RoomService(IRoomRepository roomRepository, IHotelRepository hotelR
         await roomRepository.DeleteRoom(room, cancellationToken);
     }
 
-    public async Task<List<RoomEntity>> GetByCityAsync(string city, CancellationToken cancellationToken)
+    public async Task<List<RoomEntity>> GetByAddressAsync(string address, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(address))
+            throw new ArgumentException("Incorrect address.");
+        
+        return await roomRepository.GetByAddress(address, cancellationToken);
     }
 
-    public Task<List<RoomEntity>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
+    public async Task<List<RoomEntity>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        if (startDate == default || endDate == default)
+            throw new ArgumentException("Start or end date cannot be empty.");
+
+        if (startDate >= endDate)
+            throw new ArgumentException("Start date must be earlier than end date.");
+
+        return await roomRepository.GetByAvailableDates(startDate, endDate, cancellationToken);
     }
 }
