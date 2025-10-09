@@ -11,7 +11,7 @@ public static class ApplicationExtension
         serviceCollection.AddScoped<IBookingService, BookingService>();
         serviceCollection.AddScoped<IHotelService, HotelService>();
         serviceCollection.AddScoped<IRoomService, RoomService>();
-        serviceCollection.AddScoped<IUserService, UserService>();
+        serviceCollection.AddScoped<IAuthService, AuthService>();
 
         return serviceCollection;
     }

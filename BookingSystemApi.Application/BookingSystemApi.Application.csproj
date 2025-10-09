@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BookingSystemApi.Core\BookingSystemApi.Core.csproj" />
+      <ProjectReference Include="..\BookingSystemApi.Infrastructure\BookingSystemApi.Infrastructure.csproj" />
       <ProjectReference Include="..\BookingSystemApi.Persistence\BookingSystemApi.Persistence.csproj" />
     </ItemGroup>
 

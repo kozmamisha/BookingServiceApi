@@ -1,6 +1,6 @@
 ﻿namespace BookingSystemApi.Application.Interfaces;
 
-public interface IUserService
+public interface IAuthService
 {
     Task Register(string userName, string email, string password, CancellationToken cancellationToken);
     Task<string> Login(string email, string password, CancellationToken cancellationToken);

@@ -16,3 +16,5 @@ C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\bin\D
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\obj\Debug\net9.0\BookingSystemApi.Application.csproj.AssemblyReference.cache
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\obj\Debug\net9.0\BookingSystemApi.Application.sourcelink.json
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\obj\Debug\net9.0\BookingS.2C79DB1E.Up2Date
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\bin\Debug\net9.0\BookingSystemApi.Infrastructure.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi.Application\bin\Debug\net9.0\BookingSystemApi.Infrastructure.pdb

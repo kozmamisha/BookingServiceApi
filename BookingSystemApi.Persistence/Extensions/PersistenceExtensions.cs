@@ -19,7 +19,6 @@ public static class PersistenceExtensions
         services.AddScoped<IBookingRepository, BookingRepository>();
         services.AddScoped<IHotelRepository, HotelRepository>();
         services.AddScoped<IRoomRepository, RoomRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
         
         return services;
     }
