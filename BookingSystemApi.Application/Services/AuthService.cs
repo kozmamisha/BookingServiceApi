@@ -1,4 +1,6 @@
-﻿using BookingSystemApi.Application.Interfaces;
+﻿using BookingSystemApi.Application.Exceptions;
+using BookingSystemApi.Application.Interfaces;
+using BookingSystemApi.Core.Constants;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Infrastructure.Auth;
 using BookingSystemApi.Infrastructure.Interfaces.Auth;
@@ -34,11 +36,14 @@ public class AuthService(
         };
 
         var result = await userManager.CreateAsync(user, password);
-
-        if (!result.Succeeded)
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(user, Roles.Admin);
+        }
+        else
         {
             var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-            throw new InvalidOperationException($"Failed to register user: {errors}");
+            throw new ArgumentException($"Failed to register user: {errors}");
         }
     }
 
@@ -63,13 +68,14 @@ public class AuthService(
         return token;
     }
 
-    public Task UpdateAsync(Guid id, string userName, string email, string password, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
+        var user = await userManager.FindByIdAsync(id.ToString());
+        if (user == null)
+            throw new EntityNotFoundException("User not found");
 
-    public Task DeleteAsync(Guid id, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        var result = await userManager.DeleteAsync(user);
+        if (!result.Succeeded)
+            throw new ArgumentException(string.Join(", ", result.Errors.Select(e => e.Description)));
     }
 }

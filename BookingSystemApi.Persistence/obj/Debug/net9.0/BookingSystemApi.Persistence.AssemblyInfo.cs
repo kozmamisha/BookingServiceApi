@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookingSystemApi.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1aae5b4efafc44752d62aea493fed7f1625c84b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fad948f25e804737941e1b0201c45bec0e524cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookingSystemApi.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookingSystemApi.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

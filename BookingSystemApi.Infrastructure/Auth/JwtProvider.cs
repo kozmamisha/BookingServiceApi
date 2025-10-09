@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BookingSystemApi.Core.Constants;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Infrastructure.Interfaces.Auth;
 using Microsoft.Extensions.Options;
@@ -17,7 +18,8 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
         Claim[] claims = [
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
-            new Claim(ClaimTypes.Email, user.Email ?? string.Empty)
+            new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
+            new Claim(ClaimTypes.Role, Roles.Admin)
         ];
 
         var signinCredentials = new SigningCredentials(
@@ -25,6 +27,8 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
             SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
+            issuer: _options.Issuer,
+            audience: _options.Audience,
             claims: claims,
             signingCredentials: signinCredentials,
             expires: DateTime.UtcNow.AddHours(_options.ExpiresHours));

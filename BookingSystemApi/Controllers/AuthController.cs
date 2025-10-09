@@ -1,6 +1,7 @@
 ﻿using BookingSystemApi.Application.Interfaces;
 using BookingSystemApi.Contracts.Auth;
 using BookingSystemApi.Infrastructure.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -26,5 +27,25 @@ public class AuthController(IAuthService authService, IOptions<AuthOptions> opti
         HttpContext.Response.Cookies.Append(options.Value.CookieName, token);
 
         return Ok();
+    }
+    
+    [HttpPost("logout")]
+    [Authorize]
+    public ActionResult Logout()
+    {
+        HttpContext.Response.Cookies.Delete(options.Value.CookieName);
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    [Authorize]
+    public async Task<ActionResult> DeleteUser([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        await authService.DeleteAsync(id, cancellationToken);
+        
+        HttpContext.Response.Cookies.Delete(options.Value.CookieName);
+        
+        return NoContent();
     }
 }
