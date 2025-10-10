@@ -19,7 +19,7 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
             new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
-            new Claim(ClaimTypes.Role, Roles.Admin)
+            new Claim(ClaimTypes.Role, user.Role)
         ];
 
         var signinCredentials = new SigningCredentials(

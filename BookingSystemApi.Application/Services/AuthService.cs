@@ -38,7 +38,7 @@ public class AuthService(
         var result = await userManager.CreateAsync(user, password);
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(user, Roles.Admin);
+            await userManager.AddToRoleAsync(user, Roles.User);
         }
         else
         {

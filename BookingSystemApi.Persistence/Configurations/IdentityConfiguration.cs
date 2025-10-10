@@ -16,6 +16,7 @@ public static class IdentityConfiguration
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<BookingSystemDbContext>()
             .AddDefaultTokenProviders();
 
