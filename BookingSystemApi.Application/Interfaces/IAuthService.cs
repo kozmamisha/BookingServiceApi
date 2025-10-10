@@ -2,7 +2,7 @@
 
 public interface IAuthService
 {
-    Task Register(string userName, string email, string password, CancellationToken cancellationToken);
-    Task<string> Login(string email, string password, CancellationToken cancellationToken);
-    Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+    Task Register(string userName, string email, string password);
+    Task<string> Login(string email, string password);
+    Task DeleteAsync(Guid id);
 }

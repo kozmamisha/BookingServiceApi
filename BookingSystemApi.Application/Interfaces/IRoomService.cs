@@ -1,5 +1,4 @@
 ﻿using BookingSystemApi.Application.Dto;
-using BookingSystemApi.Core.Entities;
 
 namespace BookingSystemApi.Application.Interfaces;
 

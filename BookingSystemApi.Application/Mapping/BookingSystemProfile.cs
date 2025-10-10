@@ -10,5 +10,6 @@ public class BookingSystemProfile : Profile
     {
         CreateMap<HotelEntity, HotelDto>();
         CreateMap<RoomEntity, RoomDto>();
+        CreateMap<BookingEntity, BookingDto>();
     }
 }

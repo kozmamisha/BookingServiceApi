@@ -15,16 +15,14 @@ public class RoomService(
     public async Task<List<RoomDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         var rooms = await roomRepository.GetAllRooms(cancellationToken);
-        var result = mapper.Map<List<RoomDto>>(rooms);
-        return result;
+        return mapper.Map<List<RoomDto>>(rooms);
     }
 
     public async Task<RoomDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var room = await roomRepository.GetRoomById(id, cancellationToken)
                     ?? throw new EntityNotFoundException("Room not found");
-        var result = mapper.Map<RoomDto>(room);
-        return result;
+        return mapper.Map<RoomDto>(room);
     }
 
     public async Task CreateAsync(decimal pricePerNight, int capacity, Guid hotelId, CancellationToken cancellationToken)
@@ -73,8 +71,7 @@ public class RoomService(
             throw new ArgumentException("Incorrect address.");
         
         var rooms = await roomRepository.GetByAddress(address, cancellationToken);
-        var result = mapper.Map<List<RoomDto>>(rooms);
-        return result;
+        return mapper.Map<List<RoomDto>>(rooms);
     }
 
     public async Task<List<RoomDto>> GetAvailableRoomsAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
@@ -86,7 +83,6 @@ public class RoomService(
             throw new ArgumentException("Start date must be earlier than end date.");
         
         var rooms = await roomRepository.GetByAvailableDates(startDate, endDate, cancellationToken);
-        var result = mapper.Map<List<RoomDto>>(rooms);
-        return result;
+        return mapper.Map<List<RoomDto>>(rooms);
     }
 }

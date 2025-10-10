@@ -16,6 +16,16 @@ public class BookingRepository(BookingSystemDbContext dbContext) : IBookingRepos
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<List<BookingEntity>> GetAllBookingsByUserId(string userId, CancellationToken cancellationToken)
+    {
+        return await dbContext.Bookings
+            .Include(b => b.Room)
+            .ThenInclude(r => r.Hotel)
+            .Include(b => b.User)
+            .Where(b => b.UserId == userId)
+            .ToListAsync(cancellationToken);
+    }   
+
     public async Task<BookingEntity?> GetBookingById(Guid id, CancellationToken cancellationToken)
     {
         return await dbContext.Bookings
@@ -44,5 +54,15 @@ public class BookingRepository(BookingSystemDbContext dbContext) : IBookingRepos
     {
         dbContext.Bookings.Remove(booking);
         await dbContext.SaveChangesAsync(cancellationToken);
+    }
+    
+    public async Task<List<BookingEntity>> GetOverlappingBookingsAsync(Guid roomId, DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
+    {
+        return await dbContext.Bookings
+            .Where(b => b.RoomId == roomId &&
+                        ((startDate >= b.StartTime && startDate < b.EndTime) ||
+                         (endDate > b.StartTime && endDate <= b.EndTime) ||
+                         (startDate <= b.StartTime && endDate >= b.EndTime)))
+            .ToListAsync(cancellationToken);
     }
 }

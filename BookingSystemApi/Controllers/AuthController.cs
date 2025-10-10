@@ -12,17 +12,17 @@ namespace BookingSystemApi.Controllers;
 public class AuthController(IAuthService authService, IOptions<AuthOptions> options) : ControllerBase
 {
     [HttpPost("register")]
-    public async Task<ActionResult> Register([FromBody] RegisterUserRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult> Register([FromBody] RegisterUserRequest request)
     {
-        await authService.Register(request.UserName, request.Email, request.Password, cancellationToken);
+        await authService.Register(request.UserName, request.Email, request.Password);
 
         return Created();
     }
     
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] LoginUserRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult> Login([FromBody] LoginUserRequest request)
     {
-        var token = await authService.Login(request.Email, request.Password, cancellationToken);
+        var token = await authService.Login(request.Email, request.Password);
         
         HttpContext.Response.Cookies.Append(options.Value.CookieName, token);
 
@@ -40,9 +40,9 @@ public class AuthController(IAuthService authService, IOptions<AuthOptions> opti
 
     [HttpDelete("{id:guid}")]
     [Authorize]
-    public async Task<ActionResult> DeleteUser([FromRoute] Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult> DeleteUser([FromRoute] Guid id)
     {
-        await authService.DeleteAsync(id, cancellationToken);
+        await authService.DeleteAsync(id);
         
         HttpContext.Response.Cookies.Delete(options.Value.CookieName);
         

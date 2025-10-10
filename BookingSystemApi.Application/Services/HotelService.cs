@@ -12,16 +12,14 @@ public class HotelService(IHotelRepository hotelRepository, IMapper mapper) : IH
     public async Task<List<HotelDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         var hotels = await hotelRepository.GetAllHotels(cancellationToken);
-        var result = mapper.Map<List<HotelDto>>(hotels);
-        return result;
+        return mapper.Map<List<HotelDto>>(hotels);
     }
 
     public async Task<HotelDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var hotel = await hotelRepository.GetHotelById(id, cancellationToken)
             ?? throw new EntityNotFoundException("Hotel not found");
-        var result = mapper.Map<HotelDto>(hotel);
-        return result;
+        return mapper.Map<HotelDto>(hotel);
     }
 
     public async Task CreateAsync(string name, string address, string description, CancellationToken cancellationToken)

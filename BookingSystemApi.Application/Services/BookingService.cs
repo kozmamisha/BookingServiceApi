@@ -1,78 +1,92 @@
-﻿using BookingSystemApi.Application.Exceptions;
+﻿using System.Security.Claims;
+using AutoMapper;
+using BookingSystemApi.Application.Dto;
+using BookingSystemApi.Application.Exceptions;
 using BookingSystemApi.Application.Interfaces;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Persistence.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookingSystemApi.Application.Services;
 
 public class BookingService(
     IBookingRepository bookingRepository, 
     IRoomRepository roomRepository,
-    IHttpContextAccessor httpContextAccessor) : IBookingService
+    IHttpContextAccessor httpContextAccessor,
+    IMapper mapper,
+    UserManager<UserEntity> userManager) : IBookingService
 {
-    // private Guid CurrentUserId => Guid.Parse(
-    //     httpContextAccessor.HttpContext!.User.FindFirstValue(CustomClaims.UserId)!);
+    private string CurrentUserId =>
+        httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.NameIdentifier)!;
     
-    public async Task<List<BookingEntity>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<BookingDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await bookingRepository.GetAllBookings(cancellationToken);
+        var bookings = await bookingRepository.GetAllBookings(cancellationToken);
+        return mapper.Map<List<BookingDto>>(bookings);
     }
 
-    public async Task<BookingEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<List<BookingDto>> GetAllByUserIdAsync(string userId, CancellationToken cancellationToken)
     {
-        return await bookingRepository.GetBookingById(id, cancellationToken)
-            ?? throw new EntityNotFoundException("Booking not found");
+        var bookings = await bookingRepository.GetAllBookingsByUserId(userId, cancellationToken);
+        return mapper.Map<List<BookingDto>>(bookings);
     }
 
-    public async Task CreateAsync(DateTime startTime, DateTime endTime, Guid roomId, CancellationToken cancellationToken)
+    public async Task CreateAsync(DateTime startTime, DateTime endTime, Guid roomId, string userId, CancellationToken cancellationToken)
     {
-        // if (startTime == default || endTime == default)
-        //     throw new ArgumentException("Start or end date cannot be empty.");
-        //
-        // var room = await roomRepository.GetRoomById(roomId, cancellationToken)
-        //            ?? throw new EntityNotFoundException("Room not found");
-        //
-        // BookingEntity booking = new()
-        // {
-        //     StartTime = startTime,
-        //     EndTime = endTime,
-        //     RoomId = roomId,
-        //     UserId = Guid.NewGuid() // add current user
-        // };
-        //
-        // await bookingRepository.AddBooking(booking, cancellationToken);
+        if (startTime >= endTime)
+            throw new ArgumentException("Invalid booking dates");
+
+        var room = await roomRepository.GetRoomById(roomId, cancellationToken)
+            ?? throw new EntityNotFoundException("Room not found");
+        
+        var user = await userManager.FindByIdAsync(userId)
+            ?? throw new EntityNotFoundException("User not found");
+
+        var overlappingBookings = await bookingRepository.GetOverlappingBookingsAsync(roomId, startTime, endTime, cancellationToken);
+        if (overlappingBookings.Any())
+            throw new ArgumentException("Room is not available for the selected dates");
+
+        var booking = new BookingEntity
+        {
+            RoomId = roomId,
+            UserId = userId,
+            StartTime = startTime,
+            EndTime = endTime
+        };
+
+        await bookingRepository.AddBooking(booking, cancellationToken);
     }
 
     public async Task UpdateAsync(Guid id, DateTime startTime, DateTime endTime, CancellationToken cancellationToken)
     {
-        // if (startTime == default || endTime == default)
-        //     throw new ArgumentException("Start or end date cannot be empty.");
-        //
-        // var currentBooking = await bookingRepository.GetBookingById(id, cancellationToken)
-        //            ?? throw new EntityNotFoundException("Booking not found");
-        //
-        // // if (CurrentUserId != currentComment.AuthorId)
-        // // {
-        // //     throw new BadRequestException("You can not update other person's comment");
-        // // }
-        //
-        // currentBooking.StartTime = startTime;
-        // currentBooking.EndTime = endTime;
-        //
-        // await bookingRepository.UpdateBooking(currentBooking, cancellationToken);
+        var booking = await bookingRepository.GetBookingById(id, cancellationToken)
+            ?? throw new EntityNotFoundException("Booking not found");
+        
+        if (CurrentUserId != booking.UserId)
+            throw new ArgumentException("You can not update other user's booking");
+        
+        if (startTime >= endTime)
+            throw new ArgumentException("Invalid booking dates");
+        
+        var overlappingBookings = await bookingRepository.GetOverlappingBookingsAsync(booking.RoomId, startTime, endTime, cancellationToken);
+        if (overlappingBookings.Any(b => b.Id != id))
+            throw new ArgumentException("Room is not available for the selected dates");
+        
+        booking.StartTime = startTime;
+        booking.EndTime = endTime;
+        
+        await bookingRepository.UpdateBooking(booking, cancellationToken);
     }
 
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        // var booking = await bookingRepository.GetBookingById(id, cancellationToken)
-        //               ?? throw new EntityNotFoundException("Booking not found");
-        //     
-        // // if (CurrentUserId != comment.AuthorId)
-        // // {
-        // //     throw new BadRequestException("You can not delete other person's comment");
-        // // }
-        //
-        // await bookingRepository.DeleteBooking(booking, cancellationToken);
+        var booking = await bookingRepository.GetBookingById(id, cancellationToken)
+                      ?? throw new EntityNotFoundException("Booking not found");
+        
+        if (CurrentUserId != booking.UserId)
+            throw new ArgumentException("You can not delete other user's booking");
+        
+        await bookingRepository.DeleteBooking(booking, cancellationToken);
     }
 }

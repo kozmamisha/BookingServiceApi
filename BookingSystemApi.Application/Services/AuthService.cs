@@ -1,10 +1,12 @@
-﻿using BookingSystemApi.Application.Exceptions;
+﻿using System.Security.Claims;
+using BookingSystemApi.Application.Exceptions;
 using BookingSystemApi.Application.Interfaces;
 using BookingSystemApi.Core.Constants;
 using BookingSystemApi.Core.Entities;
 using BookingSystemApi.Infrastructure.Auth;
 using BookingSystemApi.Infrastructure.Interfaces.Auth;
 using BookingSystemApi.Persistence.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace BookingSystemApi.Application.Services;
@@ -12,9 +14,13 @@ namespace BookingSystemApi.Application.Services;
 public class AuthService(
     UserManager<UserEntity> userManager, 
     SignInManager<UserEntity> signInManager,
-    IJwtProvider jwtProvider) : IAuthService
+    IJwtProvider jwtProvider,
+    IHttpContextAccessor httpContextAccessor) : IAuthService
 {
-    public async Task Register(string userName, string email, string password, CancellationToken cancellationToken)
+    private string CurrentUserId =>
+        httpContextAccessor.HttpContext!.User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+    
+    public async Task Register(string userName, string email, string password)
     {
         if (string.IsNullOrWhiteSpace(userName) ||
             string.IsNullOrWhiteSpace(email) ||
@@ -38,7 +44,7 @@ public class AuthService(
         var result = await userManager.CreateAsync(user, password);
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(user, Roles.User);
+            await userManager.AddToRoleAsync(user, Roles.Admin);
         }
         else
         {
@@ -47,7 +53,7 @@ public class AuthService(
         }
     }
 
-    public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
+    public async Task<string> Login(string email, string password)
     {
         if (string.IsNullOrWhiteSpace(email) ||
             string.IsNullOrWhiteSpace(password))
@@ -55,9 +61,8 @@ public class AuthService(
             throw new ArgumentException("Email or password cannot be empty.");
         }
         
-        var user = await userManager.FindByEmailAsync(email);
-        if (user == null)
-            throw new UnauthorizedAccessException("Invalid email or password.");
+        var user = await userManager.FindByEmailAsync(email)
+            ?? throw new UnauthorizedAccessException("Invalid email or password.");
 
         var result = await signInManager.CheckPasswordSignInAsync(user, password, false);
         if (!result.Succeeded)
@@ -68,11 +73,15 @@ public class AuthService(
         return token;
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Guid id)
     {
-        var user = await userManager.FindByIdAsync(id.ToString());
-        if (user == null)
-            throw new EntityNotFoundException("User not found");
+        if (CurrentUserId != id.ToString())
+        {
+            throw new ArgumentException("You can not delete other user");
+        }
+        
+        var user = await userManager.FindByIdAsync(id.ToString())
+            ?? throw new EntityNotFoundException("User not found");
 
         var result = await userManager.DeleteAsync(user);
         if (!result.Succeeded)
