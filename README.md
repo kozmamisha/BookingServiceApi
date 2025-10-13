@@ -1,7 +1,7 @@
 # 🏨 Booking System
 
-[![.NET](https://img.shields.io/badge/.NET-7.0-blue)](https://dotnet.microsoft.com/)
-[![Entity Framework Core](https://img.shields.io/badge/EF%20Core-7.0-lightgrey)](https://docs.microsoft.com/en-us/ef/core/)
+[![.NET](https://img.shields.io/badge/.NET-9.0-blue)](https://dotnet.microsoft.com/)
+[![Entity Framework Core](https://img.shields.io/badge/EF%20Core-10.0-lightgrey)](https://docs.microsoft.com/en-us/ef/core/)
 
 A modern **hotel booking system** built with **ASP.NET Core**, **Entity Framework Core**, and **Razor Pages**.  
 Allows users to browse hotels, make bookings, and manage reservations.  
