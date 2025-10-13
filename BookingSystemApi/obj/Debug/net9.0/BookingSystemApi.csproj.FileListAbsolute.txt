@@ -157,3 +157,5 @@ C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\obj\Debug\net9.0\
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\package-lock.json
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\package.json
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\BookingSystemApi.staticwebassets.runtime.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\Dapper.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\obj\Debug\net9.0\compressed\p6kiy8xei5-dwjvpewl77.gz
