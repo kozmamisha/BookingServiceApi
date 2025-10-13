@@ -30,4 +30,9 @@
       <ProjectReference Include="..\BookingSystemApi.Persistence\BookingSystemApi.Persistence.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\input.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\output.css" />
+    </ItemGroup>
+
 </Project>

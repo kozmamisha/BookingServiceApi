@@ -1,0 +1,37 @@
+﻿@page
+@model BookingSystemApi.Pages.Bookings.Index
+
+<div class="container py-5">
+    <h1 class="mb-4">Book a Room</h1>
+
+    <div class="card p-4 shadow-sm">
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="SelectedHotelId" class="form-label">Select Hotel</label>
+                <select asp-for="SelectedHotelId" class="form-select">
+                    <option value="">-- Choose a Hotel --</option>
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        <option value="@hotel.Id">@hotel.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedHotelId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StartTime" class="form-label">Start Date</label>
+                <input asp-for="StartTime" class="form-control" type="datetime-local"/>
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="EndTime" class="form-label">End Date</label>
+                <input asp-for="EndTime" class="form-control" type="datetime-local"/>
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+    </div>
+</div>

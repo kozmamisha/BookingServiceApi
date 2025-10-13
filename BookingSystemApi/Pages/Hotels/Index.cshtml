@@ -1,0 +1,46 @@
+﻿@page
+@model BookingSystemApi.Pages.Hotels.Index
+
+<div class="container py-4">
+    <h1 class="display-4 mb-4">Hotels</h1>
+
+    @if (!Model.Hotels.Any())
+    {
+        <p class="text-muted">No hotels found.</p>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var hotel in Model.Hotels)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h2 class="card-title h5 mb-2">@hotel.Name</h2>
+                            <p class="card-text text-secondary mb-2">@hotel.Address</p>
+                            <p class="card-text text-muted mb-3">@hotel.Description</p>
+
+                            <h3 class="h6 mb-2">Rooms:</h3>
+                            @if (hotel.Rooms == null || !hotel.Rooms.Any())
+                            {
+                                <p class="text-muted">No rooms available.</p>
+                            }
+                            else
+                            {
+                                <ul class="list-group list-group-flush">
+                                    @foreach (var room in hotel.Rooms)
+                                    {
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span>Capacity: @room.Capacity</span>
+                                            <span>Price: $@room.PricePerNight</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

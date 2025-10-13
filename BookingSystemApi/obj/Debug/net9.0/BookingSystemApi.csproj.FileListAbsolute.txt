@@ -152,3 +152,8 @@ C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\obj\Debug\net9.0\BookingSystemApi.RazorAssemblyInfo.cache
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\obj\Debug\net9.0\BookingSystemApi.RazorAssemblyInfo.cs
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\package-lock.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\package.json
+C:\Users\micha\RiderProjects\BookingSystemApi\BookingSystemApi\bin\Debug\net9.0\BookingSystemApi.staticwebassets.runtime.json
